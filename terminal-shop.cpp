@@ -11,7 +11,6 @@ struct Product {
 int main() {
     const int PRODUCT_COUNT = 10; 
 
-    
     Product products[PRODUCT_COUNT] = {
         {"Apple", 1.5, 50},
         {"Banana", 0.8, 100},
@@ -28,8 +27,6 @@ int main() {
     string username, password;
 
     cout << "=== Sale Database System ===\n";
-    // cout << "Login as (user/admin): ";
-    // cin >> userType;
 
     cout << "Username: ";
     cin >> username;
@@ -57,7 +54,6 @@ int main() {
             else if (choice == 2) {
                 double cartTotal = 0;
                 char buyMore;
-                
 
                 do {
                     int productID, qty;
@@ -68,9 +64,7 @@ int main() {
 
                     while (true) {
                         cout << "Enter product ID (1-" << PRODUCT_COUNT << "): ";
-                        if (cin >> productID) {
-                            break;
-                        }
+                        if (cin >> productID) break;
                         cout << "Invalid input. Please enter numbers only.\n";
                         cin.clear();
                         cin.ignore(1000, '\n');
@@ -78,14 +72,11 @@ int main() {
 
                     while (true) {
                         cout << "Enter quantity: ";
-                        if (cin >> qty) {
-                            break;
-                        }
+                        if (cin >> qty) break;
                         cout << "Invalid input. Please enter numbers only.\n";
                         cin.clear();
                         cin.ignore(1000, '\n');
                     }
-                    
 
                     if (productID < 1 || productID > PRODUCT_COUNT) {
                         cout << "Invalid product.\n";
@@ -129,30 +120,27 @@ int main() {
                 cout << "\nStock List:\n";
                 for (int i = 0; i < PRODUCT_COUNT; i++) {
                     cout << i + 1 << ". " << products[i].name
-                         << " - " << products[i].price << " units\n";
+                         << " - " << products[i].stock << " units\n";  // <-- Fixed here
                 }
-            } else if (choice == 2){
+            } 
+            else if (choice == 2){
                 cout << "\nPrice List:\n";
                 for (int i = 0; i < PRODUCT_COUNT; i++) {
-                    cout << i + 1 << ". " << products[i].name << " - " << " $" << products[i].price << endl;
+                    cout << i + 1 << ". " << products[i].name << " - $" << products[i].price << endl;
                 } 
             } 
-
-
             else if (choice == 3) {
                 int productID;
                 double newPrice;
 
                 cout << "\nCurrent Price List:\n";
                 for (int i = 0; i < PRODUCT_COUNT; i++) {
-                    cout << i + 1 << ". " << products[i].name << " - " << " $" << products[i].price << endl;
+                    cout << i + 1 << ". " << products[i].name << " - $" << products[i].price << endl;
                 }
-                
+
                 while (true) {
                     cout << "Enter product ID (1-" << PRODUCT_COUNT << "): ";
-                    if (cin >> productID) {
-                        break;
-                    }
+                    if (cin >> productID) break;
                     cout << "Invalid input. Please enter numbers only.\n";
                     cin.clear();
                     cin.ignore(1000, '\n');
@@ -160,14 +148,12 @@ int main() {
 
                 while (true) {
                     cout << "Enter new price: ";
-                    if (cin >> newPrice) {
-                        break;
-                    }
+                    if (cin >> newPrice) break;
                     cout << "Invalid input. Please enter numbers only.\n";
                     cin.clear();
                     cin.ignore(1000, '\n');
                 }
-                
+
                 if (productID >= 1 && productID <= PRODUCT_COUNT) {
                     products[productID - 1].price = newPrice;
                     cout << "Price updated.\n";
@@ -175,17 +161,16 @@ int main() {
             }
             else if (choice == 4) {
                 int productID, newStock;
-                
+
                 cout << "\nCurrent Stock List:\n";
                 for (int i = 0; i < PRODUCT_COUNT; i++) {
-                    cout << i + 1 << ". " << products[i].name << " - " << products[i].price << " units\n";
+                    cout << i + 1 << ". " << products[i].name
+                         << " - " << products[i].stock << " units\n";  // <-- Fixed here too
                 }
 
                 while (true) {
                     cout << "Enter product ID (1-" << PRODUCT_COUNT << "): ";
-                    if (cin >> productID) {
-                        break;
-                    }
+                    if (cin >> productID) break;
                     cout << "Invalid input. Please enter numbers only.\n";
                     cin.clear();
                     cin.ignore(1000, '\n');
@@ -193,9 +178,7 @@ int main() {
 
                 while (true) {
                     cout << "Enter new stock: ";
-                    if (cin >> newStock) {
-                        break;
-                    }
+                    if (cin >> newStock) break;
                     cout << "Invalid input. Please enter numbers only.\n";
                     cin.clear();
                     cin.ignore(1000, '\n');
@@ -206,13 +189,9 @@ int main() {
                     cout << "Stock updated.\n";
                 }
             }
-            
+
         } while (choice != 0);
     } 
-
-
-
-    // --- FAILED LOGIN ---
     else {
         cout << "Login failed. Invalid credentials.\n";
     }
